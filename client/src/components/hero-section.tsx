@@ -28,10 +28,10 @@ const HeroSection: React.FC = () => {
       </div>
       <div className="container mx-auto px-4 z-20 text-center">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-4 leading-tight">
-          Built from context.<br />Designed for permanence.
+          Construido con propósito.<br />Diseñado para perdurar.
         </h1>
         <p className="text-white text-lg md:text-xl max-w-2xl mx-auto mb-8">
-          We build with an understanding of context, a focus on function, and a drive for architectural clarity.
+          Construimos con un entendimiento del contexto, un enfoque en la funcionalidad y un compromiso con la claridad arquitectónica.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
@@ -40,14 +40,14 @@ const HeroSection: React.FC = () => {
             className="rounded-full"
             onClick={scrollToProperties}
           >
-            Get in Touch <ArrowRight className="ml-2 h-5 w-5" />
+            Contáctanos <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <Button 
             variant="outlined" 
             size="xl" 
             className="rounded-full text-white border-white hover:bg-white hover:text-primary"
           >
-            Learn more
+            Conocer más
           </Button>
         </div>
       </div>
@@ -55,20 +55,20 @@ const HeroSection: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center border-t border-gray-400 pt-6 text-white">
             <p className="text-white text-sm md:text-base max-w-md mb-4 md:mb-0">
-              Designing buildings that respond to real needs and real environments, with a focus on clarity, purpose, and value.
+              Diseñamos espacios que responden a necesidades reales y entornos auténticos, con un enfoque en la claridad, propósito y valor.
             </p>
             <div className="grid grid-cols-3 gap-16">
               <div className="text-center">
                 <p className="text-3xl md:text-4xl font-bold">10+</p>
-                <p className="text-sm md:text-base text-gray-300">Years of Architecture</p>
+                <p className="text-sm md:text-base text-gray-300">Años de Experiencia</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl md:text-4xl font-bold">50+</p>
-                <p className="text-sm md:text-base text-gray-300">Projects Completed</p>
+                <p className="text-sm md:text-base text-gray-300">Proyectos Completados</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl md:text-4xl font-bold">200+</p>
-                <p className="text-sm md:text-base text-gray-300">Concepts Refined</p>
+                <p className="text-sm md:text-base text-gray-300">Conceptos Refinados</p>
               </div>
             </div>
           </div>
