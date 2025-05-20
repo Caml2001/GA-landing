@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
+  
+  /* Muted colors */
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  
+  /* Card */
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  
+  /* Border */
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  
+  /* Primary */
+  --primary: 0 0% 10%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary */
+  --secondary: 33 54% 65%;
+  --secondary-foreground: 0 0% 100%;
+  
+  /* Accent */
+  --accent: 30 28% 87%;
+  --accent-foreground: 0 0% 10%;
+  
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  
+  /* Ring */
+  --ring: 0 0% 10%;
+  
+  /* Radius */
+  --radius: 0.5rem;
+  
+  /* Status colors */
+  --available: 122 68% 49%;
+  --sold: 0 84% 60%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+.hero-gradient {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+.property-card-hover {
+  @apply transition-all duration-300;
+}
+
+.property-card-hover:hover {
+  transform: translateY(-8px);
+  @apply shadow-lg;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+.header-transparent {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.header-solid {
+  @apply bg-white shadow-md;
+  transition: background-color 0.3s ease;
+}
