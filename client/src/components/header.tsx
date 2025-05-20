@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ isHeaderSolid }) => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
             <div className={`font-serif text-2xl font-medium ${isHeaderSolid ? 'text-primary' : 'text-white'}`}>
-              Vista
+              Grupo Arze
             </div>
           </Link>
           <nav className="hidden md:flex space-x-8">
@@ -49,28 +49,28 @@ const Header: React.FC<HeaderProps> = ({ isHeaderSolid }) => {
               onClick={() => scrollToSection("hero")}
               className={`${isHeaderSolid ? 'text-primary' : 'text-white'} hover:text-secondary transition-colors duration-300`}
             >
-              PROJECT
+              INICIO
             </button>
             <button 
               onClick={() => scrollToSection("properties")}
               className={`${isHeaderSolid ? 'text-primary' : 'text-white'} hover:text-secondary transition-colors duration-300`}
             >
-              STUDIO
+              PROPIEDADES
             </button>
             <button 
               className={`${isHeaderSolid ? 'text-primary' : 'text-white'} hover:text-secondary transition-colors duration-300`}
             >
-              AWARDS
+              SERVICIOS
             </button>
             <button 
               className={`${isHeaderSolid ? 'text-primary' : 'text-white'} hover:text-secondary transition-colors duration-300`}
             >
-              ABOUT
+              NOSOTROS
             </button>
           </nav>
           <div className="hidden md:flex">
             <Button variant="hero" size="lg" className="rounded-full">
-              Contact Us
+              Contáctanos
             </Button>
           </div>
           <button 
@@ -98,26 +98,26 @@ const Header: React.FC<HeaderProps> = ({ isHeaderSolid }) => {
               onClick={() => scrollToSection("hero")} 
               className="text-white text-xl hover:text-secondary transition-colors duration-300"
             >
-              PROJECT
+              INICIO
             </button>
             <button 
               onClick={() => scrollToSection("properties")} 
               className="text-white text-xl hover:text-secondary transition-colors duration-300"
             >
-              STUDIO
+              PROPIEDADES
             </button>
             <button 
               className="text-white text-xl hover:text-secondary transition-colors duration-300"
             >
-              AWARDS
+              SERVICIOS
             </button>
             <button 
               className="text-white text-xl hover:text-secondary transition-colors duration-300"
             >
-              ABOUT
+              NOSOTROS
             </button>
             <Button variant="hero" size="lg" className="mt-4 rounded-full">
-              Contact Us
+              Contáctanos
             </Button>
           </nav>
         </div>
