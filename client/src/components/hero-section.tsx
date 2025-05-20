@@ -38,9 +38,11 @@ const HeroSection: React.FC = () => {
             variant="hero" 
             size="xl" 
             className="rounded-full"
-            onClick={scrollToProperties}
+            asChild
           >
-            Contáctanos <ArrowRight className="ml-2 h-5 w-5" />
+            <a href="https://wa.me/524491102428?text=Me%20interesa%20saber%20de%20sus%20servicios" target="_blank" rel="noopener noreferrer">
+              Contáctanos <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
           </Button>
           <Button 
             variant="outlined" 

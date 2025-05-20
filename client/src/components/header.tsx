@@ -69,8 +69,10 @@ const Header: React.FC<HeaderProps> = ({ isHeaderSolid }) => {
             </button>
           </nav>
           <div className="hidden md:flex">
-            <Button variant="hero" size="lg" className="rounded-full">
-              Contáctanos
+            <Button variant="hero" size="lg" className="rounded-full" asChild>
+              <a href="https://wa.me/524491102428?text=Me%20interesa%20saber%20de%20sus%20servicios" target="_blank" rel="noopener noreferrer">
+                Contáctanos
+              </a>
             </Button>
           </div>
           <button 
@@ -116,8 +118,10 @@ const Header: React.FC<HeaderProps> = ({ isHeaderSolid }) => {
             >
               NOSOTROS
             </button>
-            <Button variant="hero" size="lg" className="mt-4 rounded-full">
-              Contáctanos
+            <Button variant="hero" size="lg" className="mt-4 rounded-full" asChild>
+              <a href="https://wa.me/524491102428?text=Me%20interesa%20saber%20de%20sus%20servicios" target="_blank" rel="noopener noreferrer">
+                Contáctanos
+              </a>
             </Button>
           </nav>
         </div>
