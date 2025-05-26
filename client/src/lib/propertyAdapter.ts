@@ -81,7 +81,15 @@ export function adaptBackendProperty(backendProperty: BackendProperty): Property
     year: formatYear(backendProperty.createdAt),
     description: backendProperty.description,
     descriptionExtended: undefined, // El backend no tiene descripción extendida separada
-    features: backendProperty.amenities
+    features: backendProperty.amenities,
+    // Campos adicionales del backend
+    constructionArea: backendProperty.constructionArea ? formatArea(backendProperty.constructionArea) : undefined,
+    terrainArea: backendProperty.terrainArea ? formatArea(backendProperty.terrainArea) : undefined,
+    pricePerMeterTerrain: formatPricePerMeter(backendProperty.currency, backendProperty.avgPricePerM2Terrain),
+    operation: backendProperty.operation === 'venta' ? 'Venta' : 'Renta',
+    parking: backendProperty.parking,
+    currency: backendProperty.currency,
+    rawPrice: backendProperty.price
   };
 }
 

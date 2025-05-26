@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropertyCard from "@/components/property-card";
 import PropertyCardSkeleton from "@/components/property-card-skeleton";
-import Filters from "@/components/filters";
+import FiltersEnhanced from "@/components/filters-enhanced";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 // Removido import de datos estáticos - solo usamos backend
@@ -70,7 +70,7 @@ const PropertyMarketplaceEnhanced: React.FC<PropertyMarketplaceProps> = ({
           ubicaciones privilegiadas y acabados impecables.
         </p>
 
-        <Filters onApplyFilters={applyFilters} />
+        <FiltersEnhanced onApplyFilters={applyFilters} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {isLoading || (!backendData && !error) ? (
@@ -112,7 +112,19 @@ const PropertyMarketplaceEnhanced: React.FC<PropertyMarketplaceProps> = ({
           </div>
         )}
 
-
+        {/* Indicador de resultados */}
+        {allProperties.length > 0 && (
+          <div className="text-center mt-8 text-gray-600">
+            <p>
+              Mostrando {Math.min(visibleProperties, allProperties.length)} de {allProperties.length} propiedades
+              {isUsingBackend && (
+                <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  ✓ Datos actualizados
+                </span>
+              )}
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

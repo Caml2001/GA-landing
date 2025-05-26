@@ -56,7 +56,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute bottom-10 left-0 right-0 z-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center border-t border-gray-400 pt-6 text-white">
-            <p className="text-white text-sm md:text-base max-w-md mb-4 md:mb-0">
+            <p className="hidden md:block text-white text-sm md:text-base max-w-md mb-4 md:mb-0">
               Diseñamos espacios que responden a necesidades reales y entornos auténticos, con un enfoque en la claridad, propósito y valor.
             </p>
             <div className="grid grid-cols-3 gap-16">
