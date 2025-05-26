@@ -5,11 +5,21 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import DemoFilters from "@/pages/demo-filters";
+import PropertyPage from "@/pages/property";
+
+// Importar utilidades de prueba en desarrollo
+if (import.meta.env.DEV) {
+  import("@/utils/testBackend");
+}
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/demo-filters" component={DemoFilters} />
+      <Route path="/propiedad/:id" component={PropertyPage} />
+      <Route path="/propiedad/:id/:slug" component={PropertyPage} />
       <Route component={NotFound} />
     </Switch>
   );

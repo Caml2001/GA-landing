@@ -14,6 +14,14 @@ export interface Property {
   description: string;
   descriptionExtended?: string;
   features: string[];
+  // Campos adicionales del backend
+  constructionArea?: string;
+  terrainArea?: string;
+  pricePerMeterTerrain?: string;
+  operation?: string;
+  parking?: number;
+  currency?: string;
+  rawPrice?: number;
 }
 
 export interface FilterOptions {
