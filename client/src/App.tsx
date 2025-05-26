@@ -6,6 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
+// Importar utilidades de prueba en desarrollo
+if (import.meta.env.DEV) {
+  import("@/utils/testBackend");
+}
+
 function Router() {
   return (
     <Switch>
