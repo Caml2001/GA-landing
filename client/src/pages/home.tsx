@@ -4,24 +4,19 @@ import Footer from "@/components/footer";
 import HeroSection from "@/components/hero-section";
 import PropertyMarketplaceEnhanced from "@/components/property-marketplace-enhanced";
 import { config } from "@/lib/config";
-import PropertyDetail from "@/components/property-detail";
 import { Property } from "@/lib/types";
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
+import { generatePropertyUrl } from "@/lib/utils";
 
 const Home: React.FC = () => {
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [isHeaderSolid, setIsHeaderSolid] = useState(false);
+  const [, setLocation] = useLocation();
 
   const handlePropertyClick = (property: Property) => {
-    setSelectedProperty(property);
-    setIsDetailOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleCloseDetail = () => {
-    setIsDetailOpen(false);
-    document.body.style.overflow = "auto";
+    // Navegar a la URL SEO-friendly de la propiedad
+    const propertyUrl = generatePropertyUrl(property.id, property.title);
+    setLocation(propertyUrl);
   };
 
   useEffect(() => {
@@ -43,13 +38,6 @@ const Home: React.FC = () => {
       <HeroComponent />
       <MarketplaceComponent onPropertyClick={handlePropertyClick} />
       <Footer />
-      {selectedProperty && (
-        <PropertyDetail
-          property={selectedProperty}
-          isOpen={isDetailOpen}
-          onClose={handleCloseDetail}
-        />
-      )}
     </div>
   );
 };

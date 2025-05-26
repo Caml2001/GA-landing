@@ -20,6 +20,7 @@ import {
   DollarSign
 } from "lucide-react";
 import { Property } from "@/lib/types";
+import { generatePropertyUrl } from "@/lib/utils";
 
 interface PropertyDetailProps {
   property: Property;
@@ -49,7 +50,9 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
   };
 
   const handleWhatsApp = () => {
-    const message = `Hola, me interesa la propiedad: ${property.title} - ${property.price}`;
+    const propertyPath = generatePropertyUrl(property.id, property.title);
+    const propertyUrl = `${window.location.origin}${propertyPath}`;
+    const message = `Hola, me interesa la propiedad: ${property.title} - ${property.price}\n\nVer más detalles: ${propertyUrl}`;
     // TODO: Usar número de WhatsApp del backend cuando esté disponible
     // const whatsappNumber = property.contact?.whatsapp;
     const whatsappNumber = "+524491102428"; // Temporal hasta tener backend
@@ -69,19 +72,23 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
   };
 
   const handleShare = async () => {
+    // Generar URL SEO-friendly de la propiedad
+    const propertyPath = generatePropertyUrl(property.id, property.title);
+    const propertyUrl = `${window.location.origin}${propertyPath}`;
+    
     if (navigator.share) {
       try {
         await navigator.share({
           title: property.title,
           text: `Mira esta increíble propiedad: ${property.title}`,
-          url: window.location.href,
+          url: propertyUrl,
         });
       } catch (error) {
         console.log('Error sharing:', error);
       }
     } else {
       // Fallback: copiar al portapapeles
-      navigator.clipboard.writeText(window.location.href);
+      navigator.clipboard.writeText(propertyUrl);
       alert('Enlace copiado al portapapeles');
     }
   };
