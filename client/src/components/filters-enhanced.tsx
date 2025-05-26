@@ -165,54 +165,17 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
 
             {/* Tipo de propiedad */}
             <div className="relative">
-              <button
-                onClick={() => setShowPropertyTypes(!showPropertyTypes)}
-                className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white text-left flex items-center justify-between text-base"
+              <select
+                value={filters.type}
+                onChange={(e) => handleInputChange('type', e.target.value)}
+                className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent appearance-none bg-white text-base"
               >
-                <span className={`${filters.type ? "text-gray-900" : "text-gray-500"} truncate`}>
-                  {filters.type || "Tipo"}
-                </span>
-                <ChevronDown className={`h-5 w-5 text-gray-400 transition-transform flex-shrink-0 ml-2 ${showPropertyTypes ? 'rotate-180' : ''}`} />
-              </button>
-
-              {/* Dropdown de tipos de propiedad - Optimizado para móvil */}
-              {showPropertyTypes && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
-                  <div className="p-4">
-                    <h3 className="font-medium text-gray-900 mb-3 text-base">Tipo de inmueble</h3>
-                    <div className="space-y-3">
-                      {propertyTypes.map((type) => (
-                        <label key={type.id} className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg">
-                          <input
-                            type="checkbox"
-                            checked={filters.type === type.label}
-                            onChange={() => handlePropertyTypeChange(type.id)}
-                            className="w-5 h-5 text-secondary border-gray-300 rounded focus:ring-secondary"
-                          />
-                          <span className="text-gray-700 text-base">{type.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                    <div className="flex justify-between mt-4 pt-3 border-t gap-3">
-                      <button
-                        onClick={() => {
-                          setFilters(prev => ({ ...prev, type: "" }));
-                          setShowPropertyTypes(false);
-                        }}
-                        className="flex-1 text-secondary hover:text-secondary-dark font-medium py-2 text-base"
-                      >
-                        Limpiar
-                      </button>
-                      <button
-                        onClick={() => setShowPropertyTypes(false)}
-                        className="flex-1 bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary-dark text-base"
-                      >
-                        Aplicar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
+                <option value="">Tipo</option>
+                {propertyTypes.map((type) => (
+                  <option key={type.id} value={type.label}>{type.label}</option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
             </div>
           </div>
 
