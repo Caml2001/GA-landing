@@ -35,9 +35,7 @@ const HeroSection: React.FC = () => {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
-            variant="hero" 
-            size="xl" 
-            className="rounded-full"
+            className="rounded-full bg-white text-primary hover:bg-secondary hover:text-white border border-transparent transition-all duration-300 h-12 px-8 py-3 text-base"
             asChild
           >
             <a href="https://wa.me/524491102428?text=Me%20interesa%20saber%20de%20sus%20servicios" target="_blank" rel="noopener noreferrer">
@@ -45,9 +43,7 @@ const HeroSection: React.FC = () => {
             </a>
           </Button>
           <Button 
-            variant="outlined" 
-            size="xl" 
-            className="rounded-full text-white border-white hover:bg-white hover:text-primary"
+            className="hidden sm:inline-flex rounded-full text-white border-white hover:bg-white hover:text-primary bg-transparent border transition-all duration-300 h-12 px-8 py-3 text-base"
           >
             Conocer más
           </Button>
