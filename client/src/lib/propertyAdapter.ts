@@ -60,8 +60,10 @@ export function adaptBackendProperty(backendProperty: BackendProperty): Property
   // Determinar estado (por ahora todos serán "Disponible" ya que la API solo devuelve activos)
   const status = "Disponible";
 
-  // Usar la primera imagen o una imagen por defecto
-  const image = backendProperty.images[0] || "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80";
+  // Usar todas las imágenes del backend o una imagen por defecto si no hay ninguna
+  const images = backendProperty.images.length > 0 
+    ? backendProperty.images 
+    : ["https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"];
 
   // Construir ubicación completa
   const location = `${backendProperty.city}, ${backendProperty.state}`;
@@ -74,7 +76,7 @@ export function adaptBackendProperty(backendProperty: BackendProperty): Property
     pricePerMeter: formatPricePerMeter(backendProperty.currency, backendProperty.avgPricePerM2Construction),
     status: status,
     type: typeMapping[backendProperty.type] || 'Otro',
-    image: image,
+    images: images,
     area: formatArea(backendProperty.constructionArea || backendProperty.terrainArea),
     bedrooms: formatRooms('hab', backendProperty.bedrooms),
     bathrooms: formatRooms('baños', backendProperty.bathrooms),

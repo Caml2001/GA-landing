@@ -6,7 +6,7 @@ export interface Property {
   pricePerMeter: string;
   status: string;
   type: string;
-  image: string;
+  images: string[];
   area: string;
   bedrooms: string;
   bathrooms: string;

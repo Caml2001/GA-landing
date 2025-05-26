@@ -38,8 +38,8 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
 
   if (!isOpen) return null;
 
-  // Solo usar imágenes reales del backend
-  const images = property.image ? [property.image] : [];
+  // Usar todas las imágenes reales del backend
+  const images = property.images || [];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);

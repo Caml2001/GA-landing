@@ -17,7 +17,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onClick }) => {
     >
       <div className="relative">
         <img
-          src={property.image}
+          src={property.images[0] || "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"}
           alt={property.title}
           className="object-cover w-full h-64"
         />
