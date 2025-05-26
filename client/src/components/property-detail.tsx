@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   X, 
@@ -41,12 +41,32 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
   // Usar todas las imágenes reales del backend
   const images = property.images || [];
 
+  // Reiniciar el índice de imagen cuando cambie la propiedad
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [property.id]);
+
+  // Debug logs
+  console.log('Property images:', images);
+  console.log('Current image index:', currentImageIndex);
+  console.log('Total images:', images.length);
+
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    console.log('Next image clicked');
+    setCurrentImageIndex((prev) => {
+      const newIndex = (prev + 1) % images.length;
+      console.log('Moving from', prev, 'to', newIndex);
+      return newIndex;
+    });
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    console.log('Previous image clicked');
+    setCurrentImageIndex((prev) => {
+      const newIndex = (prev - 1 + images.length) % images.length;
+      console.log('Moving from', prev, 'to', newIndex);
+      return newIndex;
+    });
   };
 
   const handleWhatsApp = () => {

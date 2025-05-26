@@ -9,7 +9,12 @@ export const properties: Property[] = [
     pricePerMeter: "$8,500",
     status: "Disponible",
     type: "Villa",
-    images: ["https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"],
+    images: [
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"
+    ],
     area: "450 m²",
     bedrooms: "5 hab.",
     bathrooms: "4.5 baños",
@@ -33,7 +38,11 @@ export const properties: Property[] = [
     pricePerMeter: "$11,875",
     status: "Disponible",
     type: "Penthouse",
-    images: ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"],
+    images: [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1493246318656-5bfd4cfb29b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"
+    ],
     area: "320 m²",
     bedrooms: "4 hab.",
     bathrooms: "3.5 baños",
@@ -57,7 +66,11 @@ export const properties: Property[] = [
     pricePerMeter: "$7,763",
     status: "Disponible",
     type: "Casa",
-    images: ["https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"],
+    images: [
+      "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"
+    ],
     area: "380 m²",
     bedrooms: "4 hab.",
     bathrooms: "3 baños",
