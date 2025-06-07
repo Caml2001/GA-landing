@@ -35,10 +35,9 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   if (!isOpen) return null;
-
-
 
   const handleClose = () => {
     const propertyId = property?.id;
@@ -140,22 +139,75 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
     }
   };
 
+  const openFullScreen = () => {
+    setIsFullScreen(true);
+  };
+
+  const closeFullScreen = () => {
+    setIsFullScreen(false);
+  };
+
   return (
+    <>
+      {/* FULLSCREEN IMAGE VIEWER */}
+      {isFullScreen && (
+        <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center">
+          <button
+            onClick={closeFullScreen}
+            className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-colors"
+          >
+            <X className="h-6 w-6 text-white" />
+          </button>
+
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img
+              src={images[currentImageIndex]}
+              alt={property.title}
+              className="max-w-full max-h-full object-contain"
+              onClick={closeFullScreen}
+            />
+
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-colors"
+                >
+                  <ChevronLeft className="h-6 w-6 text-white" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full p-3 hover:bg-white/30 transition-colors"
+                >
+                  <ChevronRight className="h-6 w-6 text-white" />
+                </button>
+
+                {/* Contador de imágenes */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full">
+                  {currentImageIndex + 1} / {images.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
     <div className="fixed inset-0 bg-white z-50 overflow-hidden">
       {/* MÓVIL: Pantalla completa */}
       <div className="h-full flex flex-col md:hidden">
         {/* Header con imagen y controles */}
-        <div className="relative h-64 bg-gray-900">
+        <div className="relative h-64 bg-gray-100">
           {images.length > 0 ? (
             <>
               <img
                 src={images[currentImageIndex]}
                 alt={property.title}
-                className="object-cover w-full h-full"
+                className="object-contain w-full h-full bg-gray-100 cursor-pointer"
+                onClick={openFullScreen}
               />
               
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
+              {/* Overlay gradient - más sutil para no oscurecer la imagen */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </>
           ) : (
             <div className="flex items-center justify-center h-full">
@@ -421,14 +473,15 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
         <div className="bg-white rounded-xl max-w-5xl w-full max-h-screen overflow-auto">
           <div className="relative">
             {/* Galería de imágenes para desktop */}
-            <div className="relative h-96 bg-gray-900">
+            <div className="relative h-96 bg-gray-100">
               {images.length > 0 ? (
                 <>
-                  <img
-                    src={images[currentImageIndex]}
-                    alt={property.title}
-                    className="object-cover w-full h-full"
-                  />
+                                <img
+                src={images[currentImageIndex]}
+                alt={property.title}
+                className="object-contain w-full h-full bg-gray-100 cursor-pointer"
+                onClick={openFullScreen}
+              />
                   
                   {/* Controles de navegación */}
                   {images.length > 1 && (
@@ -564,6 +617,7 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
 
