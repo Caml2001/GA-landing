@@ -28,7 +28,7 @@ export function generateSlug(text: string): string {
 /**
  * Genera una URL SEO-friendly para una propiedad
  */
-export function generatePropertyUrl(id: number, title: string): string {
+export function generatePropertyUrl(id: string, title: string): string {
   const slug = generateSlug(title);
   return `/propiedad/${id}/${slug}`;
 }
@@ -37,6 +37,6 @@ export function generatePropertyUrl(id: number, title: string): string {
  * Extrae el ID de una URL de propiedad
  */
 export function extractPropertyIdFromUrl(url: string): string | null {
-  const match = url.match(/\/propiedad\/(\d+)/);
+  const match = url.match(/\/propiedad\/([^\/]+)/);
   return match ? match[1] : null;
 }

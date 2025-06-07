@@ -48,8 +48,19 @@ const PropertyPage: React.FC = () => {
     setLoading(false);
   }, [id, propertiesData, isLoading, isError]);
 
+  // IDs específicos que deben redirigir a dhasa.com.mx
+  const DHASA_PROPERTY_IDS = [
+    'f6001b1b-e6bc-4459-b816-4aa92cbaca36',
+    '15869b7e-9ff1-43a7-b1ab-9b0e35e3d2b2'
+  ];
+
   const handleClose = () => {
-    setLocation("/");
+    // Si la propiedad actual está en la lista de IDs de DHASA, redirigir a dhasa.com.mx
+    if (property && DHASA_PROPERTY_IDS.includes(property.id.toString())) {
+      window.location.href = 'https://dhasa.com.mx/';
+    } else {
+      setLocation("/");
+    }
   };
 
   const handleGoHome = () => {

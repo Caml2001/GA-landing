@@ -69,7 +69,7 @@ export function adaptBackendProperty(backendProperty: BackendProperty): Property
   const location = `${backendProperty.city}, ${backendProperty.state}`;
 
   return {
-    id: parseInt(backendProperty.id.replace(/\D/g, '').slice(0, 10)) || Math.floor(Math.random() * 1000000), // Convertir UUID a número
+    id: backendProperty.id, // Mantener UUID original
     title: backendProperty.title,
     location: location,
     price: formatPrice(backendProperty.price, backendProperty.currency),

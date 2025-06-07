@@ -38,6 +38,33 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
 
   if (!isOpen) return null;
 
+
+
+  const handleClose = () => {
+    const propertyId = property?.id;
+    
+    // UUIDs originales del backend de las propiedades de DHASA
+    const dhasaUUIDs = [
+      'f6001b1b-e6bc-4459-b816-4aa92cbaca36',
+      '15869b7e-9ff1-43a7-b1ab-9b0e35e3d2b2',
+      '63dbc3bc-505e-4ae7-aef4-7f9c49c186ca',
+      'ee8a1805-cd9b-47f8-ace3-2709730d15b0'
+    ];
+    
+    const isDhasa = dhasaUUIDs.includes(propertyId || '');
+    
+    console.log('Property ID:', propertyId);
+    console.log('Is DHASA property?', isDhasa);
+    
+    if (property && isDhasa) {
+      console.log('✅ Redirecting to dhasa.com.mx');
+      window.location.href = 'https://dhasa.com.mx/';
+    } else {
+      console.log('❌ Going to home');
+      onClose();
+    }
+  };
+
   // Usar todas las imágenes reales del backend
   const images = property.images || [];
 
@@ -142,7 +169,7 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
           {/* Controles superiores */}
           <div className="absolute top-4 left-4 right-4 flex justify-between items-center">
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg"
             >
               <X className="h-6 w-6 text-gray-800" />
@@ -388,7 +415,7 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
       <div 
         className="hidden md:flex fixed inset-0 bg-black bg-opacity-80 justify-center items-center p-4"
         onClick={(e) => {
-          if (e.target === e.currentTarget) onClose();
+          if (e.target === e.currentTarget) handleClose();
         }}
       >
         <div className="bg-white rounded-xl max-w-5xl w-full max-h-screen overflow-auto">
@@ -433,7 +460,7 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
 
             <button
               className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors duration-300 focus:outline-none"
-              onClick={onClose}
+              onClick={handleClose}
               aria-label="Close detail"
             >
               <X className="h-6 w-6 text-gray-800" />
