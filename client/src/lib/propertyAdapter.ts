@@ -106,15 +106,22 @@ export function adaptBackendProperties(backendProperties: BackendProperty[]): Pr
  * Convierte los filtros del frontend al formato esperado por el backend
  */
 export function adaptFiltersToBackend(frontendFilters: {
+  searchTerm?: string;
   type: string;
   location: string;
   price: string;
 }): {
+  searchTerm?: string;
   type?: string;
   location?: string;
   priceRange?: string;
 } {
   const backendFilters: any = {};
+
+  // Mapear el término de búsqueda directamente
+  if (frontendFilters.searchTerm && frontendFilters.searchTerm.trim() !== '') {
+    backendFilters.searchTerm = frontendFilters.searchTerm.trim();
+  }
 
   // Mapear tipos del frontend al backend
   const typeMapping: Record<string, string> = {
@@ -125,7 +132,9 @@ export function adaptFiltersToBackend(frontendFilters: {
     'Mansión': 'casa', // Mansión se mapea a casa
     'Oficina': 'oficina',
     'Terreno': 'terreno',
+    'Terreno / Lote': 'terreno', // Mapeo adicional
     'Local Comercial': 'commercial_local',
+    'Casa en condominio': 'casa', // Mapeo adicional
     'Bodega': 'warehouse'
   };
 

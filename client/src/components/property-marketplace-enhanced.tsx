@@ -17,6 +17,7 @@ const PropertyMarketplaceEnhanced: React.FC<PropertyMarketplaceProps> = ({
 }) => {
   const [visibleProperties, setVisibleProperties] = useState(6);
   const [filters, setFilters] = useState<FilterOptions>({
+    searchTerm: "",
     type: "",
     location: "",
     price: "",
@@ -80,7 +81,7 @@ const PropertyMarketplaceEnhanced: React.FC<PropertyMarketplaceProps> = ({
             ))
           ) : filteredProperties.length > 0 ? (
             // Mostrar propiedades del backend
-            filteredProperties.map((property) => (
+            filteredProperties.map((property: Property) => (
               <PropertyCard 
                 key={property.id} 
                 property={property} 
@@ -100,7 +101,7 @@ const PropertyMarketplaceEnhanced: React.FC<PropertyMarketplaceProps> = ({
         {visibleProperties < allProperties.length && (
           <div className="flex justify-center mt-12">
             <Button 
-              variant="outlined" 
+              variant="outline" 
               size="lg" 
               onClick={loadMoreProperties}
               className="font-medium"

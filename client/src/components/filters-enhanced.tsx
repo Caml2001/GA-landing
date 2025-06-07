@@ -8,6 +8,7 @@ interface FiltersEnhancedProps {
 }
 
 interface ExtendedFilterOptions extends FilterOptions {
+  searchTerm: string;
   bedrooms: string;
   bathrooms: string;
   minArea: string;
@@ -18,6 +19,7 @@ interface ExtendedFilterOptions extends FilterOptions {
 
 const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => {
   const [filters, setFilters] = useState<ExtendedFilterOptions>({
+    searchTerm: "",
     type: "",
     location: "",
     price: "",
@@ -81,6 +83,10 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
     }));
   };
 
+  const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prev => ({ ...prev, searchTerm: e.target.value }));
+  };
+
   const handlePropertyTypeChange = (typeId: string) => {
     const selectedType = propertyTypes.find(t => t.id === typeId);
     setFilters(prev => ({
@@ -100,8 +106,8 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
   };
 
   const handleApplyFilters = () => {
-    // Convertir filtros extendidos a FilterOptions básico
     const basicFilters: FilterOptions = {
+      searchTerm: filters.searchTerm,
       type: filters.type,
       location: filters.location,
       price: filters.price
@@ -111,6 +117,7 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
 
   const handleClearFilters = () => {
     const clearedFilters: ExtendedFilterOptions = {
+      searchTerm: "",
       type: "",
       location: "",
       price: "",
@@ -123,6 +130,7 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
     };
     setFilters(clearedFilters);
     onApplyFilters({
+      searchTerm: "",
       type: "",
       location: "",
       price: ""
@@ -142,8 +150,8 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
             <input
               type="text"
               placeholder="¿Dónde buscas?"
-              value={filters.location}
-              onChange={(e) => handleInputChange('location', e.target.value)}
+              value={filters.searchTerm}
+              onChange={handleSearchTermChange}
               className="w-full pl-10 pr-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-base"
             />
           </div>
@@ -250,9 +258,9 @@ const FiltersEnhanced: React.FC<FiltersEnhancedProps> = ({ onApplyFilters }) => 
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
-                  placeholder="Ingresa estados o colonias"
-                  value={filters.location}
-                  onChange={(e) => handleInputChange('location', e.target.value)}
+                  placeholder="Buscar por nombre, ubicación, características..."
+                  value={filters.searchTerm}
+                  onChange={handleSearchTermChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
                 />
               </div>

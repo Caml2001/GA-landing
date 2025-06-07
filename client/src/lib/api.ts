@@ -187,6 +187,7 @@ export async function searchProperties(searchFilters: {
   type?: string;
   location?: string;
   priceRange?: string;
+  searchTerm?: string;
   page?: number;
   limit?: number;
 }): Promise<ApiResponse<PropertiesResponse>> {
@@ -202,7 +203,6 @@ export async function searchProperties(searchFilters: {
 
   // Mapear ubicación (buscar en city o state)
   if (searchFilters.location) {
-    // Podrías necesitar ajustar esto según cómo quieras manejar la búsqueda por ubicación
     filters.city = searchFilters.location;
   }
 
@@ -222,5 +222,47 @@ export async function searchProperties(searchFilters: {
     }
   }
 
-  return getProperties(filters);
+  // Nota: El backend actual no soporta búsqueda por texto libre
+  // El searchTerm se manejará en el cliente después de obtener los datos
+  const response = await getProperties(filters);
+  
+  // Si hay un término de búsqueda, filtrar localmente
+  if (response.success && searchFilters.searchTerm && searchFilters.searchTerm.trim() !== '') {
+    const searchTerm = searchFilters.searchTerm.toLowerCase().trim();
+    const filteredProperties = response.data.properties.filter(property => {
+      return (
+        property.title.toLowerCase().includes(searchTerm) ||
+        property.description.toLowerCase().includes(searchTerm) ||
+        property.address.toLowerCase().includes(searchTerm) ||
+        property.city.toLowerCase().includes(searchTerm) ||
+        property.state.toLowerCase().includes(searchTerm) ||
+        property.amenities.some(amenity => amenity.toLowerCase().includes(searchTerm))
+      );
+    });
+
+    // Actualizar la paginación para reflejar los resultados filtrados
+    const totalProperties = filteredProperties.length;
+    const start = ((searchFilters.page || 1) - 1) * (searchFilters.limit || 12);
+    const end = start + (searchFilters.limit || 12);
+    const paginatedProperties = filteredProperties.slice(start, end);
+
+    return {
+      success: true,
+      data: {
+        properties: paginatedProperties,
+        pagination: {
+          currentPage: searchFilters.page || 1,
+          totalPages: Math.ceil(totalProperties / (searchFilters.limit || 12)),
+          totalProperties: totalProperties,
+          propertiesPerPage: searchFilters.limit || 12,
+          hasNextPage: end < totalProperties,
+          hasPrevPage: (searchFilters.page || 1) > 1,
+          nextPage: end < totalProperties ? (searchFilters.page || 1) + 1 : null,
+          prevPage: (searchFilters.page || 1) > 1 ? (searchFilters.page || 1) - 1 : null,
+        }
+      }
+    };
+  }
+
+  return response;
 } 

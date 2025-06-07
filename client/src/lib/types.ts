@@ -25,6 +25,7 @@ export interface Property {
 }
 
 export interface FilterOptions {
+  searchTerm?: string;
   type: string;
   location: string;
   price: string;
