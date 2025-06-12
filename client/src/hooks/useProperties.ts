@@ -72,7 +72,7 @@ export function useProperty(id: string) {
 /**
  * Hook para buscar propiedades con filtros del frontend
  */
-export function useSearchProperties(frontendFilters: FilterOptions, page: number = 1, limit: number = 12) {
+export function useSearchProperties(frontendFilters: FilterOptions, page: number = 1, limit: number = 50) {
   return useQuery({
     queryKey: ['properties', 'search', frontendFilters, page, limit],
     queryFn: async () => {
