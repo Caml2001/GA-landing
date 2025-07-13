@@ -25,6 +25,7 @@ export interface BackendProperty {
   parking?: number;
   amenities: string[];
   images: string[];
+  virtualTourUrl?: string;
   createdAt: string;
   updatedAt: string;
   contact?: {

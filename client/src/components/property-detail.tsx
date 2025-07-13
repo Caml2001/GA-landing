@@ -17,7 +17,8 @@ import {
   Home,
   Bath,
   Bed,
-  DollarSign
+  DollarSign,
+  ExternalLink
 } from "lucide-react";
 import { Property } from "@/lib/types";
 import { generatePropertyUrl } from "@/lib/utils";
@@ -114,6 +115,17 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
     const phoneNumber = "+524491102428"; // Temporal hasta tener backend
     if (phoneNumber) {
       window.location.href = `tel:${phoneNumber}`;
+    }
+  };
+
+  const handleScheduleVisit = () => {
+    const message = `Hola! Me gustaría agendar una cita para ${property.title}`;
+    // TODO: Usar número de WhatsApp del backend cuando esté disponible
+    // const whatsappNumber = property.contact?.whatsapp;
+    const whatsappNumber = "+524491102428"; // Temporal hasta tener backend
+    if (whatsappNumber) {
+      const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
     }
   };
 
@@ -428,6 +440,20 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
               )}
             </div>
 
+            {/* Tour Virtual */}
+            {property.virtualTourUrl && (
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Tour Virtual</h3>
+                <Button
+                  onClick={() => window.open(property.virtualTourUrl, '_blank')}
+                  className="w-full py-3 bg-blue-600 text-white hover:bg-blue-700 flex items-center justify-center"
+                >
+                  <ExternalLink className="h-5 w-5 mr-2" />
+                  Ver Tour Virtual 360°
+                </Button>
+              </div>
+            )}
+
             
 
             {/* Espaciado para los botones fijos */}
@@ -455,6 +481,7 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
             </Button>
           </div>
           <Button 
+            onClick={handleScheduleVisit}
             variant="outlined" 
             className="w-full py-3 border-secondary text-secondary hover:bg-secondary hover:text-white"
           >
@@ -593,9 +620,23 @@ const PropertyDetail: React.FC<PropertyDetailProps> = ({
               </div>
             </div>
 
+            {/* Tour Virtual */}
+            {property.virtualTourUrl && (
+              <div className="mb-8">
+                <h3 className="font-serif text-xl font-bold mb-4">Tour Virtual</h3>
+                <Button
+                  onClick={() => window.open(property.virtualTourUrl, '_blank')}
+                  className="w-full md:w-auto py-3 px-6 bg-blue-600 text-white hover:bg-blue-700 flex items-center justify-center"
+                >
+                  <ExternalLink className="h-5 w-5 mr-2" />
+                  Ver Tour Virtual 360°
+                </Button>
+              </div>
+            )}
+
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
               <Button 
-                onClick={handleCall}
+                onClick={handleScheduleVisit}
                 variant="secondary" 
                 size="xl" 
                 className="flex-1 font-medium flex justify-center items-center"

@@ -91,7 +91,8 @@ export function adaptBackendProperty(backendProperty: BackendProperty): Property
     operation: backendProperty.operation === 'venta' ? 'Venta' : 'Renta',
     parking: backendProperty.parking,
     currency: backendProperty.currency,
-    rawPrice: backendProperty.price
+    rawPrice: backendProperty.price,
+    virtualTourUrl: backendProperty.virtualTourUrl
   };
 }
 

@@ -22,6 +22,7 @@ export interface Property {
   parking?: number;
   currency?: string;
   rawPrice?: number;
+  virtualTourUrl?: string;
 }
 
 export interface FilterOptions {
